@@ -1,0 +1,120 @@
+[gd_scene load_steps=16 format=3 uid="uid://xfbs0l1hqove"]
+
+[ext_resource type="Texture2D" uid="uid://picf8ax0ih53" path="res://assets/enemies/test_dummy/test_dummy.png" id="1_3usl1"]
+[ext_resource type="Script" uid="uid://bpij7yr3w84hl" path="res://game/enemies/test_dummy/test_dummy.gd" id="1_ikrs0"]
+[ext_resource type="Shader" uid="uid://cby0akv11b1uf" path="res://scripts/shaders/hitshader.gdshader" id="3_chuf1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijbjx"]
+atlas = ExtResource("1_3usl1")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1c8b"]
+atlas = ExtResource("1_3usl1")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_chuf1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijbjx")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1c8b")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2urwf"]
+shader = ExtResource("3_chuf1")
+shader_parameter/flash = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikrs0"]
+atlas = ExtResource("1_3usl1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chuf1"]
+atlas = ExtResource("1_3usl1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2urwf"]
+atlas = ExtResource("1_3usl1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lcb1"]
+atlas = ExtResource("1_3usl1")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_by6ct"]
+atlas = ExtResource("1_3usl1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ijbjx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikrs0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chuf1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2urwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0lcb1")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_by6ct")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ikrs0"]
+radius = 7.0
+height = 28.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3usl1"]
+size = Vector2(6, 4)
+
+[node name="TesteDummy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_ikrs0")
+health = 1000.0
+metadata/_custom_type_script = "uid://diqrrfmi7ipdd"
+
+[node name="Shadow" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 16)
+sprite_frames = SubResource("SpriteFrames_chuf1")
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_2urwf")
+sprite_frames = SubResource("SpriteFrames_ijbjx")
+frame_progress = 0.90784234
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 8
+monitoring = false
+
+[node name="CollisionHitbox" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_ikrs0")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_3usl1")
