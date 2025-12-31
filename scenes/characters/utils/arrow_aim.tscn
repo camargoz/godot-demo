@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb3gnskivfkyo"]
+
+[ext_resource type="Script" uid="uid://dlmy3g58fllso" path="res://game/entities/characters/utils/arrow_aim.gd" id="1_ri4f5"]
+[ext_resource type="Shader" uid="uid://y3b2klj3aosw" path="res://scripts/shaders/inner_pulse.gdshader" id="2_6s7sx"]
+[ext_resource type="Texture2D" uid="uid://bfm5loo7rnujf" path="res://assets/helpers/arrows.png" id="2_krfb5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eat3d"]
+shader = ExtResource("2_6s7sx")
+shader_parameter/pulse_color = Color(1, 1, 1, 1)
+shader_parameter/pulse_strength = 0.10000000475
+shader_parameter/pulse_speed = 10.0
+
+[node name="ArrowAim" type="Node2D"]
+script = ExtResource("1_ri4f5")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+material = SubResource("ShaderMaterial_eat3d")
+rotation = 1.5707964
+texture = ExtResource("2_krfb5")

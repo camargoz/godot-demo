@@ -1,0 +1,101 @@
+[gd_scene load_steps=13 format=3 uid="uid://uxdv05yaljl7"]
+
+[ext_resource type="Script" uid="uid://crddnn24p6jg3" path="res://game/system/projectiles/projectile_melee.gd" id="1_obo0r"]
+[ext_resource type="Texture2D" uid="uid://picf8ax0ih53" path="res://assets/enemies/test_dummy/test_dummy.png" id="2_obo0r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_deg33"]
+atlas = ExtResource("2_obo0r")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c4ed"]
+atlas = ExtResource("2_obo0r")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chtiy"]
+atlas = ExtResource("2_obo0r")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7y7bt"]
+atlas = ExtResource("2_obo0r")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt1bs"]
+atlas = ExtResource("2_obo0r")
+region = Rect2(192, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7gao"]
+atlas = ExtResource("2_obo0r")
+region = Rect2(224, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ergi2"]
+atlas = ExtResource("2_obo0r")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wrye"]
+atlas = ExtResource("2_obo0r")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pg1rk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_deg33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c4ed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chtiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7y7bt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt1bs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7gao")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ergi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wrye")
+}],
+"loop": true,
+"name": &"canalize",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obo0r"]
+size = Vector2(8, 26)
+
+[node name="Attack" type="Area2D" node_paths=PackedStringArray("timer", "projectile", "collision")]
+collision_layer = 8
+collision_mask = 16
+monitoring = false
+monitorable = false
+script = ExtResource("1_obo0r")
+timer = NodePath("Timer")
+projectile = NodePath("AttackSprite")
+collision = NodePath("Collision")
+offset = Vector2(0, -12)
+base_damage = 20.0
+metadata/_custom_type_script = "uid://crddnn24p6jg3"
+
+[node name="AttackSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pg1rk")
+animation = &"canalize"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_obo0r")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="AttackSprite" to="." method="_on_animation_finished"]

@@ -15,6 +15,10 @@ run/main_scene="uid://d4hg0smbw6rma"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+EntitiesManager="*res://autoload/entities_manager.gd"
+
 [input]
 
 move_up={

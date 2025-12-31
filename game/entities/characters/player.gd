@@ -1,22 +1,45 @@
 class_name Player2D
-extends CharacterBody2D
+extends Entity2D
 
 @onready var body := $Body as AnimatedSprite2D
+@onready var hitbox := $Hitbox as Area2D
 
+##### Spell Attributes #####
+@export_category('Spell 1')
 @export var spell_1_scene: PackedScene
+@export var spell_1_coldown_s = 0.2
+
+var spells: Dictionary[StringName, ProjectileData] = {
+	'spell_1': ProjectileData.new(spell_1_coldown_s, handle_spell_1)
+}
+
+##### Attributes Player #####
 @export var damage_multiplier = 1.0
 @export var speed = 150.0
-
 var last_direction = Vector2.DOWN
 
 ###### Static Methods ######
 func _physics_process(_delta: float):
-	update_movement()
-	update_animation()
+	if alive:
+		update_movement()
+		update_animation()
 
 func _input(event):
-	if event.is_action_pressed("spell_1"):
-		spell_1()
+	if alive:
+		for spell_name in spells.keys():
+			if event.is_action_pressed(spell_name):
+				cast_spell(spell_name)
+
+func on_hit(meta: DamageData):
+	var demage = meta.demage()
+	var hitter = meta.source
+	if alive:
+		health -= demage
+		hit_flash()
+		if health <= 0:
+			health = 0
+			dead(hitter)
+	handle_hit(hitter)
 
 ###### Methods ######
 func update_movement():
@@ -63,10 +86,25 @@ func play_idle_animation():
 		else:
 			body.play("idle_up")
 
-func get_mouse_direction() -> Vector2:
-	var mouse_pos := get_global_mouse_position()
-	return (mouse_pos - global_position).normalized()
+func dead(hitter: Node):
+	alive = false
+	hitbox.set_deferred('monitorable', false)
+	body.play('dead')
+	handle_dead(hitter)
 
+func hit_flash():
+	var mat := body.material as ShaderMaterial
+	mat.set_shader_parameter("flash", 1.0)
+	var tween := create_tween()
+	tween.tween_property(mat, "shader_parameter/flash", 0.0, 0.1)
+
+###### Spells Methods ######
+func cast_spell(spell_name: StringName):
+	var spell = spells[spell_name]
+	if spell:
+		spell.cast()
+
+##### utils #####
 func get_facing_vector() -> Vector2:
 	var anim := body.animation
 	if anim.contains("up"):
@@ -77,9 +115,12 @@ func get_facing_vector() -> Vector2:
 		return Vector2.LEFT
 	return Vector2.RIGHT
 
-###### Spells ######
-func spell_1():
-	var manager = get_tree().get_first_node_in_group("projectile_manager")
-	if manager:
-		var dir := get_mouse_direction()
-		manager.spawn(self, spell_1_scene, dir)
+##### Virtual Methods #####
+func handle_spell_1():
+	pass
+
+func handle_hit(_hitter: Node):
+	pass
+
+func handle_dead(_killer: Node):
+	pass

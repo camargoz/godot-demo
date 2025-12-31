@@ -1,4 +1,4 @@
-extends ProjectileChild
+extends ProjectileRocket
 
 @onready var particles := $Particles as GPUParticles2D
 

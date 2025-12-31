@@ -1,56 +1,46 @@
-[gd_scene load_steps=15 format=3 uid="uid://dekwlh2f717wh"]
+[gd_scene load_steps=12 format=3 uid="uid://dekwlh2f717wh"]
 
-[ext_resource type="Script" uid="uid://dlb4o2uac2lep" path="res://game/characters/main/spell_1.gd" id="1_7uir4"]
-[ext_resource type="Texture2D" uid="uid://bxvoqn7jq0gmr" path="res://assets/player/player_sprite.png" id="2_pg1rk"]
-[ext_resource type="Script" uid="uid://cbb0hmp3mdohb" path="res://game/characters/main/lighting_spell_1.gd" id="3_0dt5f"]
+[ext_resource type="Script" uid="uid://dlb4o2uac2lep" path="res://game/entities/characters/char_main/main_spell_1.gd" id="1_t32dw"]
+[ext_resource type="Texture2D" uid="uid://bxvoqn7jq0gmr" path="res://assets/player/player_sprite.png" id="2_1s2wt"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rd6oc"]
-atlas = ExtResource("2_pg1rk")
-region = Rect2(0, 160, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_t32dw"]
+atlas = ExtResource("2_1s2wt")
+region = Rect2(0, 192, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_saeqk"]
-atlas = ExtResource("2_pg1rk")
-region = Rect2(32, 160, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_1s2wt"]
+atlas = ExtResource("2_1s2wt")
+region = Rect2(32, 192, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_me5t7"]
-atlas = ExtResource("2_pg1rk")
-region = Rect2(64, 160, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_orb3u"]
+atlas = ExtResource("2_1s2wt")
+region = Rect2(64, 192, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pg1rk"]
-atlas = ExtResource("2_pg1rk")
-region = Rect2(32, 160, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcxp7"]
+atlas = ExtResource("2_1s2wt")
+region = Rect2(32, 192, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pg1rk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rd6oc")
+"texture": SubResource("AtlasTexture_t32dw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_saeqk")
+"texture": SubResource("AtlasTexture_1s2wt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_me5t7")
+"texture": SubResource("AtlasTexture_orb3u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pg1rk")
+"texture": SubResource("AtlasTexture_jcxp7")
 }],
 "loop": true,
 "name": &"default",
-"speed": 30.0
+"speed": 15.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rd6oc"]
 radius = 5.0
-
-[sub_resource type="Gradient" id="Gradient_j2ddj"]
-offsets = PackedFloat32Array(0, 0.6451613)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0dt5f"]
-gradient = SubResource("Gradient_j2ddj")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Curve" id="Curve_cttwo"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.011235952), 0.0, 0.0, 0, 0]
@@ -74,33 +64,28 @@ scale_curve = SubResource("CurveTexture_pg1rk")
 [node name="Projectile" type="Area2D" node_paths=PackedStringArray("timer", "projectile", "collision")]
 collision_layer = 8
 collision_mask = 32
-script = ExtResource("1_7uir4")
+script = ExtResource("1_t32dw")
 timer = NodePath("Timer")
 projectile = NodePath("Spell")
 collision = NodePath("Collision")
+offset = Vector2(0, -24)
 base_damage = 10
 metadata/_custom_type_script = "uid://b1uny36drtgjv"
 
 [node name="Spell" type="AnimatedSprite2D" parent="."]
+position = Vector2(-7, 0)
 sprite_frames = SubResource("SpriteFrames_pg1rk")
-frame = 2
-frame_progress = 0.61769676
+frame_progress = 0.02990965
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(7, 0)
 shape = SubResource("CircleShape2D_rd6oc")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2869.7230000000004
 one_shot = true
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(7, 0)
-texture = SubResource("GradientTexture2D_0dt5f")
-script = ExtResource("3_0dt5f")
-
 [node name="Particles" type="GPUParticles2D" parent="."]
-position = Vector2(-8, 0)
+position = Vector2(-15, 0)
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_rd6oc")
 

@@ -1,5 +1,5 @@
 class_name ProjectilesManager
-extends Node
+extends Node2D
 
 func _ready():
 	add_to_group("projectile_manager")
@@ -8,12 +8,10 @@ func spawn(
   source: Node,
   projectile_scene: PackedScene,
   dir: Vector2,
-  offset:= Vector2.ZERO,
-  post_stop:= func(_caster: Node2D): pass
+  offset:= Vector2.ZERO
 ):
 	var p := projectile_scene.instantiate()
-	p.direction = dir.normalized()
 	p.caster = source
-	p.offset = offset
-	p.post_stop = post_stop
+	p.direction = dir
+	p.offset += offset
 	add_child(p)
