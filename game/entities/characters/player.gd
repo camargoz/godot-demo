@@ -19,6 +19,11 @@ var spells: Dictionary[StringName, ProjectileData] = {
 var last_direction = Vector2.DOWN
 
 ###### Static Methods ######
+func _ready():
+	EntitiesManager.add_player(self)
+	body.material = body.material.duplicate(true)
+	self._handle_ready()
+
 func _physics_process(_delta: float):
 	if alive:
 		update_movement()
@@ -38,7 +43,7 @@ func on_hit(meta: DamageData):
 		hit_flash()
 		if health <= 0:
 			health = 0
-			dead(hitter)
+			on_dead(hitter)
 	handle_hit(hitter)
 
 ###### Methods ######
@@ -86,10 +91,11 @@ func play_idle_animation():
 		else:
 			body.play("idle_up")
 
-func dead(hitter: Node):
+func on_dead(hitter: Node):
 	alive = false
 	hitbox.set_deferred('monitorable', false)
 	body.play('dead')
+	EntitiesManager.remove_player(self)
 	handle_dead(hitter)
 
 func hit_flash():

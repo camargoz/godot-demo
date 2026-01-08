@@ -9,6 +9,11 @@ extends Entity2D
 @export var after_dead_time = 5.0
 
 ##### Static Methods #####
+func _ready() -> void:
+	EntitiesManager.add_enemy(self)
+	body.material = body.material.duplicate(true)
+	self._handle_ready()
+
 func on_hit(meta: DamageData):
 	var demage = meta.demage()
 	var hitter = meta.source
@@ -17,18 +22,19 @@ func on_hit(meta: DamageData):
 		hit_flash()
 		if health <= 0:
 			health = 0
-			dead(hitter)
+			on_dead(hitter)
 	handle_hit(hitter)
 
 ##### Method #####
-func dead(hitter: Node):
+func on_dead(hitter: Node):
+	EntitiesManager.remove_enemy(self)
 	alive = false
 	hitbox.set_deferred('monitorable', false)
 	body.play('dead')
+	handle_dead(hitter)
 	timer.wait_time = after_dead_time
 	timer.start()
 	timer.timeout.connect(queue_free)
-	handle_dead(hitter)
 
 func hit_flash():
 	var mat := body.material as ShaderMaterial

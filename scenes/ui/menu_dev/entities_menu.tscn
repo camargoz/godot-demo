@@ -1,0 +1,110 @@
+[gd_scene load_steps=3 format=3 uid="uid://mjiu7bclryfh"]
+
+[ext_resource type="Script" uid="uid://dnbx4fqk7u5qj" path="res://game/ui/menu_dev/entities_menu.gd" id="1_7xp3d"]
+[ext_resource type="PackedScene" uid="uid://xfbs0l1hqove" path="res://scenes/entities/enemies/test_dummy/test_dummy.tscn" id="2_4aah4"]
+
+[node name="EntitiesMenu" type="Panel" node_paths=PackedStringArray("fps_value", "pos_value", "player_name_value", "players_amount_value", "enemies_amount_value", "add_enemy_button")]
+custom_minimum_size = Vector2(200, 20)
+offset_right = 200.0
+offset_bottom = 220.0
+script = ExtResource("1_7xp3d")
+fps_value = NodePath("VBoxContainer/FPS/Value")
+pos_value = NodePath("VBoxContainer/Player/Position/Value")
+player_name_value = NodePath("VBoxContainer/Player/Name/Value")
+players_amount_value = NodePath("VBoxContainer/PlayerAmount/Value")
+enemies_amount_value = NodePath("VBoxContainer/EnimiesAmount/Value")
+add_enemy_button = NodePath("VBoxContainer/AddEnemy")
+enemy_scene = ExtResource("2_4aah4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 300.0
+theme_override_constants/separation = 10
+
+[node name="FPS" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/FPS"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FPS:"
+uppercase = true
+
+[node name="Value" type="Label" parent="VBoxContainer/FPS"]
+layout_mode = 2
+text = "99"
+
+[node name="Player" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Player"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Player:"
+uppercase = true
+
+[node name="Name" type="HBoxContainer" parent="VBoxContainer/Player"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Player/Name"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Player/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name:"
+uppercase = true
+
+[node name="Value" type="Label" parent="VBoxContainer/Player/Name"]
+layout_mode = 2
+text = "Null"
+
+[node name="Position" type="HBoxContainer" parent="VBoxContainer/Player"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Player/Position"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Player/Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pos:"
+uppercase = true
+
+[node name="Value" type="Label" parent="VBoxContainer/Player/Position"]
+layout_mode = 2
+text = "Null"
+
+[node name="PlayerAmount" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/PlayerAmount"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Player:"
+uppercase = true
+
+[node name="Value" type="Label" parent="VBoxContainer/PlayerAmount"]
+layout_mode = 2
+text = "99"
+
+[node name="EnimiesAmount" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/EnimiesAmount"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Enemies:"
+uppercase = true
+
+[node name="Value" type="Label" parent="VBoxContainer/EnimiesAmount"]
+layout_mode = 2
+text = "99"
+
+[node name="AddEnemy" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Add Enemy"

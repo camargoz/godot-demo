@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://picf8ax0ih53" path="res://assets/enemies/test_dummy/test_dummy.png" id="1_3usl1"]
 [ext_resource type="Script" uid="uid://bpij7yr3w84hl" path="res://game/entities/enemies/test_dummy/test_dummy.gd" id="1_ikrs0"]
-[ext_resource type="PackedScene" uid="uid://uxdv05yaljl7" path="res://scenes/enemies/test_dummy/test_dummy_attack.tscn" id="2_2urwf"]
+[ext_resource type="PackedScene" uid="uid://uxdv05yaljl7" path="res://scenes/entities/enemies/test_dummy/test_dummy_attack.tscn" id="2_2urwf"]
 [ext_resource type="Shader" uid="uid://cby0akv11b1uf" path="res://scripts/shaders/hitshader.gdshader" id="3_chuf1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ijbjx"]
@@ -34,6 +34,7 @@ animations = [{
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2urwf"]
 shader = ExtResource("3_chuf1")
+shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/flash = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ikrs0"]
@@ -87,8 +88,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chuf1"]
 size = Vector2(10, 26)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3usl1"]
-size = Vector2(6, 4)
+[sub_resource type="CircleShape2D" id="CircleShape2D_2urwf"]
+radius = 3.0
 
 [node name="TesteDummy" type="CharacterBody2D"]
 collision_layer = 4
@@ -119,6 +120,6 @@ shape = SubResource("RectangleShape2D_chuf1")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
-shape = SubResource("RectangleShape2D_3usl1")
+shape = SubResource("CircleShape2D_2urwf")
 
 [node name="Timer" type="Timer" parent="."]

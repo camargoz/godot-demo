@@ -3,8 +3,7 @@ extends Player2D
 @onready var shadow := $Shadow as AnimatedSprite2D
 
 ##### Static Methods #####
-func _ready():
-	EntitiesManager.players.append(self)
+func _handle_ready():
 	shadow.play('default')
 
 ##### Methods #####

@@ -1,0 +1,11 @@
+{
+  "godotTools.editorPath.godot4": "c:\\Godot\\Godot.exe",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/*.gd.uid": true
+  }
+}
