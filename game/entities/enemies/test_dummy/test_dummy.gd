@@ -14,9 +14,14 @@ var target_distance_max: float = 20.0
 @export var attack_scene: PackedScene
 @export var attack_coldown_s = 2.0
 var attack_data: ProjectileData
+@export_category('aux test')
+@export var color: Color
 
 ##### Static Methods #####
 func _handle_ready() -> void:
+	if color:
+		var mat := body.material as ShaderMaterial
+		mat.set_shader_parameter("base_color", color)
 	target_selector = TargetSelectorData.new(target_list)
 	attack_data = ProjectileData.new(attack_coldown_s, handle_attack)
 

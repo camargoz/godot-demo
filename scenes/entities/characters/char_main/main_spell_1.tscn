@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dekwlh2f717wh"]
 
 [ext_resource type="Script" uid="uid://dlb4o2uac2lep" path="res://game/entities/characters/char_main/main_spell_1.gd" id="1_t32dw"]
-[ext_resource type="Texture2D" uid="uid://bxvoqn7jq0gmr" path="res://assets/player/player_sprite.png" id="2_1s2wt"]
+[ext_resource type="Texture2D" uid="uid://bxvoqn7jq0gmr" path="res://assets/entities/player/player_sprite.png" id="2_1s2wt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t32dw"]
 atlas = ExtResource("2_1s2wt")
@@ -61,13 +61,13 @@ scale_min = 4.0
 scale_max = 4.0
 scale_curve = SubResource("CurveTexture_pg1rk")
 
-[node name="Projectile" type="Area2D" node_paths=PackedStringArray("timer", "projectile", "collision")]
+[node name="Projectile" type="Area2D" node_paths=PackedStringArray("timer", "projectile")]
 collision_layer = 8
 collision_mask = 32
 script = ExtResource("1_t32dw")
 timer = NodePath("Timer")
 projectile = NodePath("Spell")
-collision = NodePath("Collision")
+lifetime = 0.25
 offset = Vector2(0, -24)
 base_damage = 10
 metadata/_custom_type_script = "uid://b1uny36drtgjv"

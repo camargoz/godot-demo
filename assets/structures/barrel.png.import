@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://picf8ax0ih53"
-path="res://.godot/imported/test_dummy.png-da1e17e208a8508dafae539aa1609e61.ctex"
+uid="uid://bo5eowbf5ts3a"
+path="res://.godot/imported/barrel.png-1d3f4d8cf456c48dc481b495b4fc63b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/test_dummy/test_dummy.png"
-dest_files=["res://.godot/imported/test_dummy.png-da1e17e208a8508dafae539aa1609e61.ctex"]
+source_file="res://assets/structures/barrel.png"
+dest_files=["res://.godot/imported/barrel.png-1d3f4d8cf456c48dc481b495b4fc63b4.ctex"]
 
 [params]
 

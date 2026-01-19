@@ -6,17 +6,13 @@ var npcs: Array[Entity2D] = []
 
 var enemies: Array[Entity2D] = []
 
+var objectives: Array[Entity2D] = []
 
-##### Methods Players #####
-func add_player(node: Entity2D):
-	players.append(node)
+##### Methods #####
+func add_entity(node: Entity2D, group_name: String):
+	if group_name in self:
+		self[group_name].append(node)
 
-func remove_player(node: Entity2D):
-	players.erase(node)
-
-##### Methods Enemies #####
-func add_enemy(node: Entity2D):
-	enemies.append(node)
-
-func remove_enemy(node: Entity2D):
-	enemies.erase(node)
+func remove_entity(node: Entity2D, group_name: String):
+	if group_name in self:
+		self[group_name].erase(node)

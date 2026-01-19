@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://xfbs0l1hqove"]
 
-[ext_resource type="Texture2D" uid="uid://picf8ax0ih53" path="res://assets/enemies/test_dummy/test_dummy.png" id="1_3usl1"]
+[ext_resource type="Texture2D" uid="uid://picf8ax0ih53" path="res://assets/entities/enemies/test_dummy/test_dummy.png" id="1_3usl1"]
 [ext_resource type="Script" uid="uid://bpij7yr3w84hl" path="res://game/entities/enemies/test_dummy/test_dummy.gd" id="1_ikrs0"]
 [ext_resource type="PackedScene" uid="uid://uxdv05yaljl7" path="res://scenes/entities/enemies/test_dummy/test_dummy_attack.tscn" id="2_2urwf"]
 [ext_resource type="Shader" uid="uid://cby0akv11b1uf" path="res://scripts/shaders/hitshader.gdshader" id="3_chuf1"]
@@ -34,6 +34,7 @@ animations = [{
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2urwf"]
 shader = ExtResource("3_chuf1")
+shader_parameter/base_color = Color(1, 1, 1, 1)
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/flash = 0.0
 

@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8li38qfpamry"]
+
+[ext_resource type="Script" uid="uid://8ijrnlk4kwv6" path="res://game/system/spawners/enemy_spawner.gd" id="1_cfap0"]
+[ext_resource type="Texture2D" uid="uid://xe2xv5r3dhrr" path="res://assets/spawners/portal/portal.png" id="2_lleyh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xtu2"]
+atlas = ExtResource("2_lleyh")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6d5dp"]
+atlas = ExtResource("2_lleyh")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ok1m"]
+atlas = ExtResource("2_lleyh")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2xfu"]
+atlas = ExtResource("2_lleyh")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv6a4"]
+atlas = ExtResource("2_lleyh")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ngj6u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xtu2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6d5dp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ok1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2xfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xv6a4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyPortalSpawn" type="Node2D"]
+script = ExtResource("1_cfap0")
+metadata/_custom_type_script = "uid://8ijrnlk4kwv6"
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_ngj6u")
+frame_progress = 0.48715392

@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://uxdv05yaljl7"]
 
 [ext_resource type="Script" uid="uid://crddnn24p6jg3" path="res://game/system/projectiles/projectile_melee.gd" id="1_obo0r"]
-[ext_resource type="Texture2D" uid="uid://picf8ax0ih53" path="res://assets/enemies/test_dummy/test_dummy.png" id="2_obo0r"]
+[ext_resource type="Texture2D" uid="uid://picf8ax0ih53" path="res://assets/entities/enemies/test_dummy/test_dummy.png" id="2_obo0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_deg33"]
 atlas = ExtResource("2_obo0r")

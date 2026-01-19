@@ -14,13 +14,14 @@ var spells: Dictionary[StringName, ProjectileData] = {
 }
 
 ##### Attributes Player #####
+@export_category('Player')
 @export var damage_multiplier = 1.0
 @export var speed = 150.0
 var last_direction = Vector2.DOWN
 
 ###### Static Methods ######
 func _ready():
-	EntitiesManager.add_player(self)
+	EntitiesManager.add_entity(self, 'players')
 	body.material = body.material.duplicate(true)
 	self._handle_ready()
 
@@ -95,7 +96,7 @@ func on_dead(hitter: Node):
 	alive = false
 	hitbox.set_deferred('monitorable', false)
 	body.play('dead')
-	EntitiesManager.remove_player(self)
+	EntitiesManager.remove_entity(self, 'players')
 	handle_dead(hitter)
 
 func hit_flash():

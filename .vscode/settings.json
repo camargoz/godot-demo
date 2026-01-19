@@ -6,6 +6,7 @@
     "**/.hg": true,
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
-    "**/*.gd.uid": true
+    "**/*.gd.uid": true,
+    "**/*.tmp": true
   }
 }

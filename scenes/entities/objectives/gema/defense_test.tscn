@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://duqs082s81ue"]
+
+[ext_resource type="Script" uid="uid://banhp000poiyi" path="res://game/entities/objectives/objective.gd" id="1_3oegr"]
+[ext_resource type="Texture2D" uid="uid://hpa3l48sa4p4" path="res://assets/entities/objectives/gema.png" id="2_3oegr"]
+[ext_resource type="Shader" uid="uid://cby0akv11b1uf" path="res://scripts/shaders/hitshader.gdshader" id="2_gx5np"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gmwvk"]
+shader = ExtResource("2_gx5np")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/color = Color(0.9137255, 0.9843137, 1, 1)
+shader_parameter/flash = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3oegr"]
+atlas = ExtResource("2_3oegr")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gx5np"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3oegr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3oegr"]
+radius = 3.0
+height = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3oegr"]
+size = Vector2(32, 33)
+
+[node name="DefenseTest" type="CharacterBody2D"]
+script = ExtResource("1_3oegr")
+metadata/_custom_type_script = "uid://banhp000poiyi"
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_gmwvk")
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_gx5np")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_3oegr")
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(0, -16)
+collision_layer = 16
+collision_mask = 8
+monitoring = false
+
+[node name="CollisionHitbox" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_3oegr")
+
+[node name="Timer" type="Timer" parent="."]
